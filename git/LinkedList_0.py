@@ -93,7 +93,9 @@ third_node = Node("c")
 first_node.next = second_node
 second_node.next = third_node
 print(llist)
-i = iter(llist)
-print(next(i))
-print(next(i))
-print(next(i))
+llist.add_first(Node("z"))
+print(llist)
+llist.remove_node(target_node_data="b")
+print(llist)
+llist.add_last(Node("x"))
+print(llist)
