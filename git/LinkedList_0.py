@@ -2,6 +2,7 @@ class Node:
     def __init__(self, data):
         self.data = data
         self.next = None
+        self.previous = None
 
     def __repr__(self):
         return self.data
@@ -85,17 +86,51 @@ class LinkedList:
         raise Exception("Node with data '%s' not found" % target_node_data)
 
 
+class CircularLinkedList:
+    def __init__(self):
+        self.head = None
+
+    def traverse(self, starting_point=None):
+        if starting_point is None:
+            starting_point = self.head
+        node = starting_point
+        while node is not None and (node.next != starting_point):
+            yield node
+            node = node.next
+        yield node
+
+    def print_list(self, starting_point=None):
+        nodes = []
+        for node in self.traverse(starting_point):
+            nodes.append(str(node))
+        print(" => ".join(nodes))
+
+
+test = []
 llist = LinkedList()
 first_node = Node("a")
+test.append(first_node)
+print(test)
 llist.head = first_node
 second_node = Node("b")
 third_node = Node("c")
+test.append(third_node)
+print(test)
+print(test.index(third_node))
 first_node.next = second_node
 second_node.next = third_node
-print(llist)
 llist.add_first(Node("z"))
-print(llist)
 llist.remove_node(target_node_data="b")
-print(llist)
 llist.add_last(Node("x"))
 print(llist)
+circular_llist = CircularLinkedList()
+a = Node("a")
+b = Node("b")
+c = Node("c")
+d = Node("d")
+a.next = b
+b.next = c
+c.next = d
+d.next = a
+circular_llist.head = a
+circular_llist.print_list()
