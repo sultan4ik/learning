@@ -4,7 +4,6 @@ import asyncio
 import logging
 import signal
 from asyncio import AbstractEventLoop
-from asyncio.exceptions import CancelledError
 from selectors import SelectorKey
 from typing import List, Tuple, Set
 from util.delay_functions import delay
@@ -37,7 +36,7 @@ def example_1():
                         print(f'Получены данные: {data}')
                         buffer += data
                 print(f'Все данные: {buffer}')
-                connection.send(b'Hello from server!\n')  # метод sendall/send(побайтно) выполняет отправку данных в сокет
+                connection.send(b'Hello from server!\n')  # sendall/send(побайтно) выполняет отправку данных в сокет
     finally:
         server_socket.close()
 
@@ -194,7 +193,7 @@ async def close_echo_tasks(echo_tasks: List[asyncio.Task]):
         try:
             await task
         except asyncio.exceptions.TimeoutError:
-        # Здесь мы ожидаем истечения тайм-аута
+            # Здесь мы ожидаем истечения тайм-аута
             pass
 
 
@@ -214,7 +213,7 @@ def example_6():
     loop = asyncio.new_event_loop()
     try:
         loop.run_until_complete(example_6_worker(loop))
-    except GracefulExit as exp:
+    except GracefulExit:
         # print(f'exp.code: {exp.code}\nexp.args: {exp.args}\nexp: {exp}')
         loop.run_until_complete(close_echo_tasks(echo_tasks))
     finally:

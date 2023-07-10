@@ -2,13 +2,10 @@ import asyncio
 import random
 import aiohttp
 from asyncio import Future
-
-import requests
-
 from util import delay, async_timed
 
 
-async def my_couroutine() -> None:
+async def my_coroutine() -> None:
     print('Hello, World!')
 
 
@@ -120,7 +117,8 @@ async def example_11() -> None:
 async def example_12() -> None:
     task = asyncio.create_task(delay(10))
     try:
-        result = await asyncio.wait_for(asyncio.shield(task), 5)  # метод shield защищает задачу от снятия с возникновением исключением TimeoutError по timeout
+        result = await asyncio.wait_for(asyncio.shield(task), 5)  # метод shield защищает задачу от снятия
+        # с возникновением исключением TimeoutError по timeout
         print(result)
     except asyncio.TimeoutError:
         print('Задача заняла более 5 с, скоро она закончится!')
@@ -210,7 +208,8 @@ async def get_three_random_pokemon():
 def example_18():
     loop = asyncio.new_event_loop()  # метод new_event_loop создает цикл событий
     try:
-        loop.run_until_complete(delay(3))  # метод run_untill_complete принимает сопрограмму и исполняет ее до завершения
+        loop.run_until_complete(delay(3))  # метод run_until_complete принимает сопрограмму
+        # и исполняет ее до завершения
     finally:
         loop.close()  # метод close необходми для закрытия цикла событий, чтобы освободились занятые ресурсы
 
