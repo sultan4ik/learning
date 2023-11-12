@@ -203,9 +203,9 @@ async def example_13():
     async with aiohttp.ClientSession() as session:
         url = 'https://example.com'
         fetchers = [asyncio.create_task(fetch_status(session, url)),
-                    asyncio.create_task(fetch_status(session, url)),
+                    asyncio.create_task(fetch_status(session, url, delay=5)),
                     asyncio.create_task(fetch_status(session, url, delay=3))]
-        done, pending = await asyncio.wait(fetchers, timeout=1)
+        done, pending = await asyncio.wait(fetchers, timeout=10)
         # установливается timeout на выполнение задачи, при его сработке не возникает исключения, задача не снимается
         print(f'Число завершившихся задач: {len(done)}')
         print(f'Число ожидающих задач: {len(pending)}')
@@ -240,7 +240,7 @@ async def example_15():
 
 
 def main():
-    asyncio.run(example_15())
+    asyncio.run(example_13())
 
 
 if __name__ == '__main__':

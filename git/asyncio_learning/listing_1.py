@@ -3,6 +3,8 @@ import threading
 import multiprocessing
 import requests
 import time
+import concurrent.futures
+import logging
 
 
 def example_1():
@@ -42,6 +44,7 @@ def example_3():
 
 def hello_from_process():
     print(f'Привет от дочернего процесса {os.getpid()}')
+    time.sleep(10)
 
 
 def example_4():
@@ -49,6 +52,44 @@ def example_4():
     hello_process.start()
     print(f'Привет от родительского процесса {os.getpid()}')
     hello_process.join()
+
+
+def info(title):
+    logging.info(title)
+    logging.info('module name:', __name__)
+    logging.info('parent process:', os.getppid())
+    logging.info('process id:', os.getpid())
+    logging.info('\n')
+    time.sleep(5)
+
+
+def test_function(name):
+    info('function test_function')
+    print('hello', name)
+    print('\n')
+    time.sleep(20)
+
+
+def multiprocessing_test():
+    info('main line')
+    p = multiprocessing.Process(target=test_function, args=('Artur',))
+    p1 = multiprocessing.Process(target=test_function, args=('bob',), daemon=True)
+    p2 = multiprocessing.Process(target=test_function, args=('alice',), daemon=True)
+    p.start()
+    p1.start()
+    p2.start()
+    p.join()
+    p1.join()
+    p2.join()
+
+
+def multithreading_test():
+    t1 = threading.Thread(target=test_function, args=('bob',), daemon=True)
+    t2 = threading.Thread(target=test_function, args=('alice',), daemon=True)
+    t1.start()
+    t2.start()
+    t1.join()
+    t2.join()
 
 
 def print_fib(number: int) -> None:
@@ -116,8 +157,18 @@ def example_8():
     print(f'Многопоточное выполнение заняло {end - start:.4f} с.')
 
 
+def thread_pool_executor_test():
+    with concurrent.futures.ThreadPoolExecutor(max_workers=20) as executor:
+        future_list = [executor.submit(info, name) for name in ['Artur', 'Tur', 'Ar']]
+        concurrent.futures.as_completed(future_list)
+
+
 def main():
-    example_8()
+    pass
+    # example_3()
+    # multithreading_test()
+    # thread_pool_executor_test()
+    # example_4()
 
 
 if __name__ == '__main__':

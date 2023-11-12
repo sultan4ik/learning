@@ -1,5 +1,7 @@
 import sqlite3
 import pprint
+
+
 connection = sqlite3.connect('../test_2.db')
 cursor = connection.cursor()
 cursor.execute("create table switch (mac text not NULL primary key, hostname text, model text, location text)")

@@ -164,10 +164,16 @@ async def delay_time(delay_seconds: int) -> int:
 @async_timed()
 async def example_15():
     task_one = asyncio.create_task(delay(2))
-    task_two = asyncio.create_task(delay(3))
+    task_two = asyncio.create_task(delay(4))
+    task_three = asyncio.create_task(delay(6))
+    task_four = asyncio.create_task(delay(8))
+    task_five = asyncio.create_task(delay(10))
 
     await task_one
     await task_two
+    await task_three
+    await task_four
+    await task_five
 
 
 @async_timed()
@@ -202,6 +208,7 @@ async def get_three_random_pokemon():
         for number in get_three_random_numbers:
             async with session.get(url=f'https://pokeapi.co/api/v2/pokemon/{number}', ssl=False) as request:
                 pokemon = await request.json()
+                await asyncio.sleep(5)
                 print(f"{pokemon['id']} {pokemon['name']}")
 
 
@@ -237,7 +244,8 @@ def example_20():
 
 
 def main():
-    example_20()
+    asyncio.run(example_15())
+    # example_20()
     # asyncio.run(example_19(), debug=True)
     # при запуске с параметром debug=True активируется отладочный режим, который отображает информационные сообщения,
     # если сопрограмма работает слишком долго(по умолчанию > 100 мс)
