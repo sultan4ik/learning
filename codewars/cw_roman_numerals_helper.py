@@ -22,19 +22,19 @@ class RomanNumerals:
     #             s += key
     #     print(s)
 
-    def to_roman(val):
+    def to_roman(value):
         result = ''
         translator = {1000: ['M'], 100: ['C', 'D', 'CD', 'CM'], 10: ['X', 'L', 'XL', 'XC'], 1: ['I', 'V', 'IV', 'IX']}
         for key in translator:
-            if 4 * key > val >= key:
-                result += val // key * translator[key][0]
-            if 5 * key > val >= 4 * key:
+            if 4 * key > value >= key:
+                result += value // key * translator[key][0]
+            if 5 * key > value >= 4 * key:
                 result += translator[key][2]
-            if 10 * key > val >= 9 * key:
+            if 10 * key > value >= 9 * key:
                 result += translator[key][3]
-            if 9 * key > val >= 5 * key:
-                result += translator[key][1] + (val - 5 * key) // key * translator[key][0]
-            val %= key
+            if 9 * key > value >= 5 * key:
+                result += translator[key][1] + (value - 5 * key) // key * translator[key][0]
+            value %= key
         return result
 
     def from_roman(roman_num):
@@ -48,13 +48,18 @@ class RomanNumerals:
         return result
 
 
-RomanNumerals.to_roman(1000)
-RomanNumerals.to_roman(4)
-RomanNumerals.to_roman(1)
-RomanNumerals.to_roman(1990)
-RomanNumerals.to_roman(2008)
-RomanNumerals.from_roman('XXI')
-RomanNumerals.from_roman('I')
-RomanNumerals.from_roman('IV')
-RomanNumerals.from_roman('MMVIII')
-RomanNumerals.from_roman('MDCLXVI')
+def main():
+    RomanNumerals.to_roman(1000)
+    RomanNumerals.to_roman(4)
+    RomanNumerals.to_roman(1)
+    RomanNumerals.to_roman(1990)
+    RomanNumerals.to_roman(2008)
+    RomanNumerals.from_roman('XXI')
+    RomanNumerals.from_roman('I')
+    RomanNumerals.from_roman('IV')
+    RomanNumerals.from_roman('MMVIII')
+    RomanNumerals.from_roman('MDCLXVI')
+
+
+if __name__ == '__main__':
+    main()

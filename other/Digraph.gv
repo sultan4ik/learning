@@ -1,0 +1,20 @@
+digraph "graphiz"{
+	A [label=Test]
+	B [label=B]
+	C [label=C]
+	D [label=D]
+	E [label=E]
+	F [label=F]
+	G [label=G, shape=egg]
+	A -> B
+	A -> D
+	A -> F
+	B -> C
+	B -> F
+	C -> D
+	C -> E
+	D -> A
+	E -> F
+	F -> B
+	G -> A
+}

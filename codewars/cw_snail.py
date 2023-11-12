@@ -20,8 +20,13 @@ def snail(snail_map):
     print(result)
 
 
-array_2 = [[1, 2, 3, 4],
-         [12, 13, 14, 5],
-         [11, 16, 15, 6],
-           [10, 9, 8, 7]]
-snail(snail_map = array_2)
+def main():
+    array = [[1, 2, 3, 4],
+             [12, 13, 14, 5],
+             [11, 16, 15, 6],
+             [10, 9, 8, 7]]
+    snail(snail_map=array)
+
+
+if __name__=='main':
+    main()

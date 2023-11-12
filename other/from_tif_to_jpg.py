@@ -3,6 +3,9 @@ from PIL import Image
 
 
 def converting_images(input_path: str, output_path: str):
+    """
+    Функция для конвертации TIF-изображений в JPG
+    """
     for tif_image in os.listdir(path=input_path):
         if 'tif' in tif_image:
             with Image.open(os.path.join(input_path, tif_image)) as image:
@@ -18,8 +21,7 @@ def converting_images(input_path: str, output_path: str):
 
 
 def main():
-    converting_images(input_path='/Users/artursultanbaev/ирина/converter/tif_files',
-                      output_path='/Users/artursultanbaev/ирина/converter/jpg_files')
+    pass
 
 
 if __name__ == '__main__':

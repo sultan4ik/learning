@@ -106,31 +106,42 @@ class CircularLinkedList:
         print(" => ".join(nodes))
 
 
-test = []
-llist = LinkedList()
-first_node = Node("a")
-test.append(first_node)
-print(test)
-llist.head = first_node
-second_node = Node("b")
-third_node = Node("c")
-test.append(third_node)
-print(test)
-print(test.index(third_node))
-first_node.next = second_node
-second_node.next = third_node
-llist.add_first(Node("z"))
-llist.remove_node(target_node_data="b")
-llist.add_last(Node("x"))
-print(llist)
-circular_llist = CircularLinkedList()
-a = Node("a")
-b = Node("b")
-c = Node("c")
-d = Node("d")
-a.next = b
-b.next = c
-c.next = d
-d.next = a
-circular_llist.head = a
-circular_llist.print_list()
+def test_list_create():
+    global first_node
+    test = []
+    llist = LinkedList()
+    first_node = Node("a")
+    test.append(first_node)
+    print(test)
+    llist.head = first_node
+    second_node = Node("b")
+    third_node = Node("c")
+    test.append(third_node)
+    print(test)
+    print(test.index(third_node))
+    first_node.next = second_node
+    second_node.next = third_node
+    llist.add_first(Node("z"))
+    llist.remove_node(target_node_data="b")
+    llist.add_last(Node("x"))
+    print(llist)
+    circular_llist = CircularLinkedList()
+    a = Node("a")
+    b = Node("b")
+    c = Node("c")
+    d = Node("d")
+    a.next = b
+    b.next = c
+    c.next = d
+    d.next = a
+    circular_llist.head = a
+    circular_llist.print_list()
+
+
+def main():
+    test_list_create()
+
+
+if __name__ == '__main__':
+    main()
+

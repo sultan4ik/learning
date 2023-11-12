@@ -1,10 +1,10 @@
 import random
 import sys
 
-HEARTS = chr(9829) # Червы
-DIAMONDS = chr(9830) # Буби
-SPADES = chr(9824) # Пики
-CLUBS = chr(9827) # Трефы
+HEARTS = chr(9829)  # Червы
+DIAMONDS = chr(9830)  # Буби
+SPADES = chr(9824)  # Пики
+CLUBS = chr(9827)  # Трефы
 BACKSIDE = 'backside'
 
 
